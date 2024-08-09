@@ -1,0 +1,31 @@
+.contact-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  gap: 30px;
+  width: 650px;
+  padding: 5px;
+  transition: opacity 2s ease, background-color 0.5s ease;
+}
+
+.contact-list-item:nth-child(even) {
+  background-color: #ececec;
+  border-radius: 3px;
+}
+
+.contact-list-item:hover {
+  background-color: rgb(185, 185, 185);
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.contact-list-item p {
+  width: 300px;
+  color: unset;
+  font-size: 16px;
+}
+
+.fade-out {
+  opacity: 0;
+}

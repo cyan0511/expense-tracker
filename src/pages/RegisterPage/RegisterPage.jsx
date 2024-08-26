@@ -5,13 +5,11 @@ const RegisterPage = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Registration</title>
+        <title>Sign Up</title>
       </Helmet>
-      <div className="form-container">
-        <RegisterForm />
-      </div>
+      <RegisterForm />
     </HelmetProvider>
-);
+  );
 };
 
 export default RegisterPage;

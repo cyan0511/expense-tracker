@@ -1,5 +1,12 @@
 .container {
-  max-width: 960;
   margin: 0 auto;
   padding: 0 16px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 74px;
+  gap: 54px;
+  justify-content: center;
 }

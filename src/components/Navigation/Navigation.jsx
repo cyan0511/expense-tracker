@@ -1,23 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import css from './Navigation.module.css';
-import { Button } from '@mui/material';
-import { ContactsOutlined, HomeOutlined } from '@mui/icons-material';
+import { Logo } from '../Logo/Logo';
 
 
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <nav>
+    <nav className={css.navbar}>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? css.linkActive : css.link)}
       >
-        <Button>
-          <HomeOutlined />
-          Home
-        </Button>
+        <Logo />
 
       </NavLink>
       {isLoggedIn && (
@@ -25,10 +21,9 @@ export const Navigation = () => {
           to="/contacts"
           className={({ isActive }) => (isActive ? css.linkActive : css.link)}
         >
-          <Button>
-            <ContactsOutlined />
+          <button>
             Contacts
-          </Button>
+          </button>
         </NavLink>
       )}
     </nav>

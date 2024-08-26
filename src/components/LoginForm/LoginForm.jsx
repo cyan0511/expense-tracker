@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../store/auth/authOperations';
 import css from './LoginForm.module.css';
-import { Button, InputAdornment, TextField } from '@mui/material';
-import { AccountCircle, EmailOutlined, LockOutlined } from '@mui/icons-material';
 import { getAuthError } from '../../store/auth/authSelectors';
+import { InputPassword } from '../InputPassword/InputPassword';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -28,38 +28,23 @@ export const LoginForm = () => {
   }, [error]); */
 
   return (
-    <div className={css['login-container']}>
-      <AccountCircle sx={{ fontSize: '150px' }} />
-      <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-        <TextField
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EmailOutlined />
-              </InputAdornment>
-            ),
-          }}
-          label="Email"
-          variant="standard"
-          type="email"
-          name="email" />
-        <TextField
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LockOutlined />
-              </InputAdornment>
-            ),
-          }}
-          label="Password"
-          variant="standard"
-          type="password"
-          name="password" />
-
-        {error ? <span className={css.error}>Login failed!</span> : null}
-
-        <Button type="submit" variant="outlined">Log In</Button>
+    <div className={css.container}>
+      <h1>
+        Sign In
+      </h1>
+      <p>
+        Welcome back to effortless expense tracking! Your financial dashboard awaits..
+      </p>
+      <form>
+        <input type="email" placeholder="Email" />
+        <InputPassword />
       </form>
+      <div className={css.actionButtons}>
+        <Link to="/login">
+          <button className="primary-button" type="submit">Sign In</button>
+        </Link>
+        <p>Already have account? <Link to="/signup">Sign Up</Link></p>
+      </div>
     </div>
   );
 };

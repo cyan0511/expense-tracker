@@ -1,11 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { register } from '../../store/auth/authOperations';
 import css from './RegisterForm.module.css';
-import { Button, InputAdornment, TextField } from '@mui/material';
-import {
-  AccountBoxOutlined,
-  EditNote, EmailOutlined, LockOutlined,
-} from '@mui/icons-material';
+import { InputPassword } from '../InputPassword/InputPassword';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -24,49 +21,24 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className={css['register-container']}>
-      <EditNote sx={{ fontSize: '150px' }} />
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <TextField
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccountBoxOutlined />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
-          label="User Name"
-          type="text"
-          name="name" />
-
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailOutlined />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Email"
-            type="email"
-            name="email" />
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockOutlined />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Password"
-            type="password"
-            name="password"
-          />
-        <Button variant="outlined" type="submit">Register</Button>
+    <div className={css.container}>
+      <h1>
+        Sign Up
+      </h1>
+      <p>
+        Step into a world of hassle-free expense management! Your journey towards financial mastery begins here.
+      </p>
+      <form>
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <InputPassword />
       </form>
+      <div className={css.actionButtons}>
+        <Link to="/login">
+          <button className="primary-button" type="submit">Sign Up</button>
+        </Link>
+        <p>Already have account? <Link to="/login">Sign In</Link></p>
+      </div>
     </div>
   );
 };

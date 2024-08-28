@@ -3,4 +3,14 @@
   align-items: center;
   justify-content: center;
   margin-top: 32px;
+  width: 1240px;
+}
+
+
+.authHeader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  width: 1240px;
 }

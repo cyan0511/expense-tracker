@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  width: 486px;
+  height: 520px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #171719;
+  padding: 40px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.typeContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.radioContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.radioContainer > label {
+  color: #FAFAFA;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}
+
+.dateTimeContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.dateContainer, .fieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.dateContainer svg {
+  position: absolute;
+  top: 10px;
+  left: 85%;
+  width: 20px;
+  height: 20px;
+}
+
+.dateTimeContainer input[type='date']{
+  width: 210px;
+}
+
+.dateTimeContainer input[type='time']{
+  width: 192px;
+}
+
+.currency{
+  position: absolute;
+  top: 10px;
+  left: 90%;
+}
+

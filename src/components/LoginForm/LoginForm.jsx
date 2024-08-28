@@ -1,13 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from '../../store/auth/authOperations';
+import { logIn } from '../../redux/auth/authOperations';
 import css from './LoginForm.module.css';
-import { getAuthError } from '../../store/auth/authSelectors';
-import { InputPassword } from '../InputPassword/InputPassword';
-import { Link } from 'react-router-dom';
+import { getAuthError } from '../../redux/auth/authSelectors';
+import { AuthForm } from '../AuthForm/AuthForm';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const error = useSelector(getAuthError);
+
+  const fields = [
+    { name: 'email', type: 'email', placeholder: 'Email' },
+    { name: 'password', type: 'password', placeholder: 'Password' },
+  ];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -16,7 +20,7 @@ export const LoginForm = () => {
       logIn({
         email: form.elements.email.value,
         password: form.elements.password.value,
-      })
+      }),
     );
     form.reset();
   };
@@ -35,16 +39,16 @@ export const LoginForm = () => {
       <p>
         Welcome back to effortless expense tracking! Your financial dashboard awaits..
       </p>
-      <form>
-        <input type="email" placeholder="Email" />
-        <InputPassword />
-      </form>
-      <div className={css.actionButtons}>
-        <Link to="/login">
-          <button className="primary-button" type="submit">Sign In</button>
-        </Link>
-        <p>Already have account? <Link to="/signup">Sign Up</Link></p>
-      </div>
+
+      <AuthForm
+        fields={fields}
+        buttonText="Sign In"
+        footerText="Don't have an account?"
+        footerLink="/signup"
+        footerLinkText="Sign Up"
+        isLogin={true}
+      />
+
     </div>
   );
 };

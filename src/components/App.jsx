@@ -1,48 +1,69 @@
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/useAuth';
-import { lazy, useEffect } from 'react';
-import { refreshUser } from '../store/auth/authOperations';
+import { lazy, useEffect, useState } from 'react';
+import { refreshToken } from '../redux/auth/authOperations';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const MainTransactionsPage = lazy(() => import('../pages/MainTransactionsPage/MainTransactionsPage'));
 
 export function App() {
-
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isLoggedIn, token, sid, isRefreshing } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
 
- /* useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);*/
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      if (token && !isLoggedIn) {
+        await dispatch(refreshToken({ sid })).unwrap();
+      }
+      setIsLoading(false); // Set loading to false after checking auth status
+    };
 
-  return isRefreshing ? (
-    <>
-      <h3>Authenticating...</h3>
-    </>
-  ) : (
+    checkAuthStatus();
+  }, [dispatch, token, isLoggedIn, sid]);
+
+
+
+ /* if (isRefreshing) {
+    return(
+      <>
+        <h3>Authenticating...</h3>
+      </>
+    )
+  }*/
+
+  return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<RestrictedRoute
+          component={<WelcomePage />}
+          redirectTo="/transactions/:transactionType"
+        />} />
         <Route
           path="/signup"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />
+            <RestrictedRoute redirectTo="/" component={<RegisterPage />} />
           }
         />
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+            <RestrictedRoute redirectTo="/" component={<LoginPage />} />
           }
         />
+        {/* Protected routes (accessible only when logged in) */}
         <Route
-          path="/contacts"
+          path="/transactions/:transactionType"
           element={
-            <PrivateRoute redirectTo="/login" component={null} />
+            <PrivateRoute
+              component={<MainTransactionsPage />}
+              redirectTo="/"
+            />
           }
         />
       </Route>

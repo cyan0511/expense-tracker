@@ -1,10 +1,36 @@
 @import-normalize; /* bring in normalize.css styles */
 
 :root {
-  --mintgreen: #0EF387;
+  --mint-green: #0EF387;
   --black: #0c0d0d;
   --white: #fff;
+  --red: #da0d0d;
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #050707;; /* Darker thumb on hover */
+}
+
+/* Webkit-based browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 10px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #0C0D0D;;
+}
+
+::-webkit-scrollbar-track {
+  background: #444446; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0C0D0D;; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded scrollbar */
+  border: 2px solid #444446; /* Space between scrollbar and edge */
+}
+
+
 
 body {
   margin: 0;
@@ -15,7 +41,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   background-color: #0C0D0D;
+
+  scrollbar-width: thin;
+  scrollbar-color: #444446 transparent;
+  color: #FAFAFA;
 }
+
+
 
 h1,
 h2,
@@ -57,7 +89,14 @@ p {
   background: #0EF387;
   color: #0C0D0D;
   transition: background-color 1.0s ease;
+  cursor: pointer;
 }
+
+.primary-button:disabled, .primary-button:hover:disabled {
+  background: rgba(14, 243, 135, 0.4);
+  cursor: not-allowed;
+}
+
 
 .primary-button:hover {
   background: #0EBB69;
@@ -80,7 +119,7 @@ p {
   border: 1px solid #0EF387;
 }
 
-input {
+input, textarea {
   display: inline-flex;
   padding: 12px 12px 12px 18px;
   align-items: center;
@@ -92,16 +131,68 @@ input {
   transition: border-color 1.0s ease;
 }
 
-input:hover {
+input:hover, textarea:hover {
   color: #FAFAFA;
   border: 1px solid #0EF387;
 }
 
-input:focus-visible {
+input:focus-visible, textarea:focus-visible {
   outline: none;
   box-shadow: none;
 }
 
-input:invalid:focus {
-  border: 1px solid #E74A3B;
+input[type='radio'] {
+  appearance: unset;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+input[type='radio']:checked {
+  outline: 2px solid #00ff7f;
+  background-color: rgb(0 255 127 / 1);
+  border-color: rgb(23 23 25 / 1);
+  border-width: 3px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="date"] {
+  -moz-appearance: textfield;
+}
+
+/* Internet Explorer */
+input[type="date"]::-ms-expand {
+  display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Internet Explorer */
+input[type="number"]::-ms-clear,
+input[type="number"]::-ms-reveal {
+  display: none;
+}
+
+
+/* Change text color when the input has a value */
+input[type="date"]:not(:placeholder-shown) {
+  color: #333;
 }

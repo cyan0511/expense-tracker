@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import css from './Navigation.module.css';
-import { Logo } from '../Logo/Logo';
+import { TransactionsHistoryNav } from '../TransactionsHistoryNav/TransactionsHistoryNav';
 
 
 export const Navigation = () => {
@@ -9,22 +8,8 @@ export const Navigation = () => {
 
   return (
     <nav className={css.navbar}>
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? css.linkActive : css.link)}
-      >
-        <Logo />
-
-      </NavLink>
       {isLoggedIn && (
-        <NavLink
-          to="/contacts"
-          className={({ isActive }) => (isActive ? css.linkActive : css.link)}
-        >
-          <button>
-            Contacts
-          </button>
-        </NavLink>
+        <TransactionsHistoryNav />
       )}
     </nav>
   );

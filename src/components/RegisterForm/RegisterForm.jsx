@@ -1,12 +1,15 @@
 import { useDispatch } from 'react-redux';
-import { register } from '../../store/auth/authOperations';
+import { register } from '../../redux/auth/authOperations';
 import css from './RegisterForm.module.css';
-import { InputPassword } from '../InputPassword/InputPassword';
-import { Link } from 'react-router-dom';
+import { AuthForm } from '../AuthForm/AuthForm';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-
+  const fields = [
+    { name: 'name', type: 'text', placeholder: 'Name' },
+    { name: 'email', type: 'email', placeholder: 'Email' },
+    { name: 'password', type: 'password', placeholder: 'Password' },
+  ];
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -15,7 +18,7 @@ export const RegisterForm = () => {
         name: form.elements.name.value,
         email: form.elements.email.value,
         password: form.elements.password.value,
-      })
+      }),
     );
     form.reset();
   };
@@ -28,17 +31,14 @@ export const RegisterForm = () => {
       <p>
         Step into a world of hassle-free expense management! Your journey towards financial mastery begins here.
       </p>
-      <form>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <InputPassword />
-      </form>
-      <div className={css.actionButtons}>
-        <Link to="/login">
-          <button className="primary-button" type="submit">Sign Up</button>
-        </Link>
-        <p>Already have account? <Link to="/login">Sign In</Link></p>
-      </div>
+       <AuthForm
+        fields={fields}
+        buttonText="Sign Up"
+        footerText="Already have an account?"
+        footerLink="/login"
+        footerLinkText="Sign In"
+        isLogin={false}
+      />
     </div>
   );
 };

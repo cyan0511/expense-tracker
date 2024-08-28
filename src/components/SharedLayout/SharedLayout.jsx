@@ -13,10 +13,11 @@ export const SharedLayout = () => {
       <div className={css.mainContainer}>
         {!isLoggedIn && <BgImageWrapper />}
 
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-
+        <div style={{minWidth: '575px'}}>
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
+        </div>
       </div>
     </div>
   );

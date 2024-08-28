@@ -1,0 +1,8 @@
+.actionButtons {
+  display: flex;
+  gap: 14px;
+}
+
+.actionButtons svg {
+  cursor: pointer;
+}

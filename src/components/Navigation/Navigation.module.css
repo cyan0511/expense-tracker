@@ -13,5 +13,6 @@
 
 .navbar {
   display: flex;
-  justify-content: center; /* Centers the NavLinks horizontally */
+  justify-content: space-between; /* Centers the NavLinks horizontally */
+  align-items: center;
 }

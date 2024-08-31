@@ -13,3 +13,51 @@
   gap: 54px;
   justify-content: center;
 }
+
+
+/* Styles for screens 375px wide or less (e.g., small mobile devices) */
+@media screen and (max-width: 375px) {
+  .container {
+    padding: 20px;
+  }
+  .mainContainer {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .outlet {
+    order: 1;
+  }
+
+  .imageWrapper {
+    order: 2;
+  }
+
+}
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+  .mainContainer {
+    flex-direction: column;
+    margin-top: 96px;
+  }
+
+  .imageWrapper {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    /* overflow: hidden; */
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    opacity: 0;
+    display: none;
+  }
+}

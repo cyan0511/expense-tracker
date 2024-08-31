@@ -9,23 +9,29 @@ const WelcomePage = () => (
       <title>Expense Tracker</title>
     </Helmet>
     <div className={css.container}>
-      <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
-        <h1>expense log</h1>
-        <div className={css.manageFinance}>
-          Manage Your
-          {' '}
-          <span>Finances</span>
-          {' '}
-          Masterfully!
+      <div className={css.subContainer} style={{ display: 'inline-flex', flexDirection: 'column' }}>
+        <div>
+          <h1>expense log</h1>
+          <div className={css.manageFinance}>
+            Manage Your
+            {' '}
+            <span>Finances</span>
+            {' '}
+            Masterfully!
+          </div>
+          <p>
+            ExpenseTracker effortlessly empowers you to take control of your finances! With intuitive features, it
+            simplifies the process of tracking and managing expenses, allowing for a stress-free mastery over your
+            financial world.
+          </p>
         </div>
-        <p>
-          ExpenseTracker effortlessly empowers you to take control of your finances! With intuitive features, it
-          simplifies the process of tracking and managing expenses, allowing for a stress-free mastery over your
-          financial world.
-        </p>
-        <AuthNav />
+        <div className={css.authNavContainer}>
+          <AuthNav />
+        </div>
       </div>
-      <AllUsersTab />
+      <div className={css.allUsersTab}>
+        <AllUsersTab />
+      </div>
     </div>
   </HelmetProvider>
 );

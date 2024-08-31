@@ -17,3 +17,9 @@
   gap: 20px;
   margin-top: 40px;
 }
+
+@media screen and (max-width: 375px) {
+  .actionButtons {
+    margin-top: 30px;
+  }
+}

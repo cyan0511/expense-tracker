@@ -64,3 +64,27 @@
   }
 
 }
+
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .container {
+    top: 315px;
+    width: 248px;
+    height: 81px;
+    flex-shrink: 0;
+    left: -16px;
+  }
+}
+
+
+/* Styles for screens 375px wide or less (e.g., small mobile devices) */
+@media screen and (max-width: 375px) {
+  .container {
+    top: 240px;
+    width: 248px;
+    height: 81px;
+    flex-shrink: 0;
+    left: -10px;
+  }
+}

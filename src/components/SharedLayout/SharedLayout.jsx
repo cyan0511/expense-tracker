@@ -11,9 +11,9 @@ export const SharedLayout = () => {
     <div className={css.container}>
       <Header />
       <div className={css.mainContainer}>
-        {!isLoggedIn && <BgImageWrapper />}
+        {!isLoggedIn && <div className={css.imageWrapper}><BgImageWrapper /></div>}
 
-        <div style={{minWidth: '575px'}}>
+        <div className={css.outlet}>
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>

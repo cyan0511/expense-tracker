@@ -1,65 +1,42 @@
-import React, { useRef } from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import icon from '../../assets/images/icons.svg';
 import css from './TransactionForm.module.css';
-import Modal from '../Modal/Modal';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../redux/categories/selectors';
-import { CategoryList } from '../CategoryList/CategoryList';
+import { useTransactionForm } from '../../context/TransactionProvider';
+import { CategoriesModal } from '../CategoriesModal/CategoriesModal';
 
-export const TransactionForm = () => {
-  const [formData, setFormData] = useState({
-    type: 'expenses',
-  });
+export const TransactionForm = ({ onSave }) => {
+  const { formData, handleChange, handleSubmit } = useTransactionForm();
+
   const datePicker = useRef(null);
   const timePicker = useRef(null);
-  const [currentDate, setCurrentDate] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
 
   const categories = useSelector(getCategories);
+
+  const [category, setCategory] = useState(formData.category);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  /* const [categoryList, setCategoryList] = useState(categories);
-
-   useEffect(() => {
-     setCategoryList(categories);
-   }, [categories])*/
-
-  useEffect(() => {
-    const now = new Date();
-
-    const date = now.toISOString().split('T')[0];
-    setCurrentDate(date);
-
-    const time = now.toTimeString().split(' ')[0].slice(0, 5);
-    setCurrentTime(time);
-  }, []);
-
-  const handleChange = (value, field) => {
-    setFormData({
-      ...formData,
-      [field]: value,
-    });
-  };
-
   return (
     <>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2>{formData.type}</h2>
-        <CategoryList
-          onItemClick={(category) => {
-            handleChange(category, 'category');
-            closeModal();
-          }}
-          type={formData.type}
-          categories={categories[formData.type] || []} />
-      </Modal>
+      <CategoriesModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        type={formData.type}
+        categories={categories[formData.type] || []}
+        onItemClick={(category) => {
+          setCategory(category);
+          handleChange('category', category._id);
+          closeModal();
+        }}
+        title={formData.type}
+      />
 
-      <form className={css.container}>
+      <form className={css.container} onSubmit={(e) => { handleSubmit(e); (onSave && onSave()); setCategory(null);}}>
         <div className={css.typeContainer}>
           <div className={css.radioContainer}>
             <input
@@ -67,7 +44,9 @@ export const TransactionForm = () => {
               id="expense"
               name="transaction"
               value="expenses"
-              onChange={(e) => handleChange(e.target.value, 'type')}
+              onChange={(e) => {
+                setCategory(null); handleChange('type', e.target.value);
+              }}
               defaultChecked
             />
             <label
@@ -82,7 +61,10 @@ export const TransactionForm = () => {
               id="income"
               name="transaction"
               value="incomes"
-              onChange={(e) => handleChange(e.target.value, 'type')}
+              onChange={(e) => {
+                setCategory(null);
+                handleChange('type', e.target.value)
+              }}
             />
             <label
               htmlFor="income"
@@ -100,10 +82,10 @@ export const TransactionForm = () => {
             <div style={{ position: 'relative' }}>
               <input
                 ref={datePicker}
-                value={currentDate}
+                value={formData.date || ''}
                 type="date"
                 onClick={e => e.currentTarget.showPicker()}
-                onChange={e => setCurrentDate(e.target.value)}
+                onChange={e => handleChange('date', e.target.value)}
               />
               <svg onClick={() => datePicker.current?.click()}>
                 <use href={`${icon}#calendar-icon`} />
@@ -117,10 +99,10 @@ export const TransactionForm = () => {
             <div style={{ position: 'relative' }}>
               <input
                 ref={timePicker}
-                value={currentTime}
+                value={formData.time || ''}
                 type="time"
                 onClick={e => e.currentTarget.showPicker()}
-                onChange={e => setCurrentTime(e.target.value)}
+                onChange={e => handleChange('time', e.target.value)}
               />
               <svg onClick={() => timePicker.current?.click()}>
                 <use href={`${icon}#clock-icon`} />
@@ -140,7 +122,7 @@ export const TransactionForm = () => {
             onClick={openModal}
             type="text"
             placeholder="Enter the category"
-            value={formData.category?.categoryName || ''}
+            value={category?.categoryName || ''}
           />
         </div>
 
@@ -155,6 +137,8 @@ export const TransactionForm = () => {
               style={{ width: '454px' }}
               type="number"
               placeholder="Enter the sum"
+              value={formData.sum || ''}
+              onChange={(e) => handleChange('sum', e.target.value)}
             />
             <span className={css.currency}>
               USD
@@ -171,6 +155,8 @@ export const TransactionForm = () => {
           <textarea
             style={{ height: '97px' }}
             placeholder="Enter the text"
+            value={formData.comment || ''}
+            onChange={(e) => handleChange('comment', e.target.value)}
           />
 
         </div>
@@ -179,7 +165,7 @@ export const TransactionForm = () => {
           type="submit"
           className="primary-button"
         >
-          Add
+          {formData._id ? 'Save' : 'Add'}
         </button>
 
       </form>

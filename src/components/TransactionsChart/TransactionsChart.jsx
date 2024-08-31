@@ -7,14 +7,67 @@ import { getCategories } from '../../redux/categories/selectors';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-export const TransactionsChart = () => {
+export const TransactionsChart = ({ expenses }) => {
   const categories = useSelector(getCategories).expenses; // ['Hobby', 'Products', 'Cinema', 'Health'];
+
+  const calculateExpensePercentage = () => {
+    if (expenses.length === 0) return {};
+    const categoryTotals = {};
+    let totalExpenses = 0;
+
+    // Sum up the total expenses and total by category
+    expenses.forEach(expense => {
+      const { category, sum } = expense;
+      totalExpenses += sum;
+
+      if (categoryTotals[category.categoryName]) {
+        categoryTotals[category.categoryName] += sum;
+      } else {
+        categoryTotals[category.categoryName] = sum;
+      }
+    });
+
+    // Calculate the percentage for each category
+    const categoryPercentages = {};
+    for (const category in categoryTotals) {
+      categoryPercentages[category] = (categoryTotals[category] / totalExpenses) * 100;
+    }
+
+    return categoryPercentages;
+  };
+
+  const expensePercentage = calculateExpensePercentage();
+
+  const categoryColors = [
+    '#0EF387',
+    '#0EBB69',
+    '#fafafa',
+    '#fafafa80',
+    '#ff4000',
+    '#ff8000',
+    '#ffbf00',
+    '#ffff00',
+    '#bfff00',
+    '#80ff00',
+  ];
+
+  const getCategoryColor = index => {
+    if (index > categoryColors.length ) return generateRandomColor();
+    return categoryColors[index];
+  }
+
+  const generateRandomColor = () => {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return `#${randomColor.padStart(6, '0')}`;
+  }
+
   const data = {
     labels: categories.map(c => c.categoryName),
     datasets: [
       {
-        data: [45, 25, 20, 10],
-        backgroundColor: ['#0EF387', '#0EBB69', '#fafafa', '#fafafa80'],
+        data: categories.map(c => expensePercentage[c.categoryName]),
+        backgroundColor: categories
+          .map((c, i) => getCategoryColor(i)),
         borderWidth: 0,
         borderRadius: 10,
         spacing: -60,
@@ -49,12 +102,12 @@ export const TransactionsChart = () => {
           <ul>
             {categories.map((cat, index) => (
                 <li key={index}>
-                  <div style={{ display: 'flex', alignItems:'center', gap: '8px' }}>
-                    <div style={{width: '12px', height: '12px', background: '#0EF387', borderRadius: 9999}} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ width: '12px', height: '12px', background: `${getCategoryColor(index)}`, borderRadius: 9999 }} />
                     {cat.categoryName}
                   </div>
-                  <span>45%</span></li>
-              )
+                  <span>{(expensePercentage[cat.categoryName] || 0).toFixed(0)}%</span></li>
+              ),
             )}
 
           </ul>

@@ -1,8 +1,13 @@
 import React from 'react';
 import css from './TransactionsTotalAmount.module.css';
 import icons from '../../assets/images/icons.svg';
+import { useSelector } from 'react-redux';
+import { getTransactions } from '../../redux/transactions/selectors';
 
-export const TransactionsTotalAmount = () => {
+export const TransactionsTotalAmount = ({ expenses, incomes }) => {
+  const getTotalExpenses = () => expenses.reduce((a, b) => a + b.sum, 0);
+  const getTotalIncomes = () => incomes.reduce((a, b) => a + b.sum, 0);
+
   return (
     <div className={css.container}>
       <div className={css.totalContainer}>
@@ -29,7 +34,7 @@ export const TransactionsTotalAmount = () => {
             wordWrap: 'break-word',
           }}>Total Income
           </div>
-          <div style={{ color: '#FAFAFA', fontSize: 24, fontWeight: '700', wordWrap: 'break-word' }}>$632.000</div>
+          <div style={{ color: '#FAFAFA', fontSize: 24, fontWeight: '700', wordWrap: 'break-word' }}>${getTotalIncomes()}</div>
         </div>
       </div>
       <div className={css.totalContainer}>
@@ -55,7 +60,7 @@ export const TransactionsTotalAmount = () => {
             wordWrap: 'break-word',
           }}>Total Expense
           </div>
-          <div style={{ color: '#FAFAFA', fontSize: 24, fontWeight: '700', wordWrap: 'break-word' }}>$632.000</div>
+          <div style={{ color: '#FAFAFA', fontSize: 24, fontWeight: '700', wordWrap: 'break-word' }}>${getTotalExpenses()}</div>
         </div>
       </div>
     </div>

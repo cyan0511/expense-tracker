@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   value: '',
-  findBy: 'name',
+  date: '',
 } ;
 
 // Create slice for filter

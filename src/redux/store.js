@@ -3,6 +3,8 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { categoriesReducer } from './categories/categoriesSlice';
+import { transactionsReducer } from './transactions/transactionsSlice';
+import { filterReducer } from './filterSlice';
 
 // Persisting token field from auth slice to localstorage
 const authPersistConfig = {
@@ -15,6 +17,8 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     categories: categoriesReducer,
+    transactions: transactionsReducer,
+    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

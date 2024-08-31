@@ -10,6 +10,7 @@ const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const MainTransactionsPage = lazy(() => import('../pages/MainTransactionsPage/MainTransactionsPage'));
+const TransactionsHistoryPage = lazy(() => import('../pages/TransactionsHistoryPage/TransactionsHistoryPage'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<RestrictedRoute
           component={<WelcomePage />}
-          redirectTo="/transactions/:transactionType"
+          redirectTo="/transactions"
         />} />
         <Route
           path="/signup"
@@ -58,7 +59,7 @@ export function App() {
         />
         {/* Protected routes (accessible only when logged in) */}
         <Route
-          path="/transactions/:transactionType"
+          path="/transactions"
           element={
             <PrivateRoute
               component={<MainTransactionsPage />}
@@ -66,6 +67,15 @@ export function App() {
             />
           }
         />
+        <Route
+          path="/transactions/history/:transactionType"
+          element={
+            <PrivateRoute
+              component={<TransactionsHistoryPage />}
+              redirectTo="/"
+            />
+          }
+         />
       </Route>
     </Routes>
   );

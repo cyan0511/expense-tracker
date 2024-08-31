@@ -47,6 +47,8 @@ const categoriesSlice = createSlice({
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.isLoading = false;
 
+        console.log(state.categories);
+
         state.categories = {
           expenses: state.categories.expenses?.map(e => e._id === action.payload._id ?
             { ...e, ...action.payload } : e),

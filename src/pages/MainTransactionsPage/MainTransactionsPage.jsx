@@ -3,14 +3,38 @@ import { TransactionsTotalAmount } from 'components/TransactionsTotalAmount/Tran
 import { TransactionsChart } from 'components/TransactionsChart/TransactionsChart';
 import { TransactionForm } from 'components/TransactionForm/TransactionForm';
 import css from './MainTransactionsPage.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/categories/operations';
+import { TransactionProvider } from '../../context/TransactionProvider';
+import { fetchExpenses, fetchIncomes } from '../../redux/transactions/operations';
+import { getTransactions } from '../../redux/transactions/selectors';
 
 const MainTransactionsPage = () => {
   const dispatch = useDispatch();
+  const transactions = useSelector(getTransactions);
+
+  const { expenses, incomes } = transactions;
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  const isCurrentMonth = (date) => {
+    const itemDate = new Date(date);
+    return itemDate.getMonth() === currentMonth &&
+      itemDate.getFullYear() === currentYear
+  }
+
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchExpenses());
+    dispatch(fetchIncomes());
   }, [dispatch]);
+
+  const currentMonthExpenses =  expenses
+    .filter(e => isCurrentMonth(e.date));
+  const currentMonthIncomes = incomes
+    .filter(e => isCurrentMonth(e.date));
 
   return (
     <div className={css.container}>
@@ -23,17 +47,18 @@ const MainTransactionsPage = () => {
           your financial habits at your fingertips.
         </p>
 
-        <div style={{marginTop: '40px'}}>
-          <TransactionsTotalAmount />
+        <div style={{ marginTop: '40px' }}>
+          <TransactionsTotalAmount expenses={currentMonthExpenses} incomes={currentMonthIncomes} />
         </div>
         <div style={{ marginTop: '40px' }}>
-          <TransactionsChart />
+          <TransactionsChart expenses={currentMonthExpenses} />
         </div>
       </div>
 
-      {/* Form */}
-      <div className="">
-        <TransactionForm />
+      <div>
+        <TransactionProvider >
+          <TransactionForm />
+        </TransactionProvider>
       </div>
     </div>
   );

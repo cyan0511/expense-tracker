@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.container input {
+  display: inline-flex;
+  padding: 15px 30px;
+  align-items: center;
+  gap: 30px;
+  border-radius: 30px;
+  background: #0C0D0D;
+}
+
+.dateTimeContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 183px;
+}
+
+
+.dateContainer svg {
+  position: absolute;
+  top: 15px;
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  fill: #0EF387;
+}

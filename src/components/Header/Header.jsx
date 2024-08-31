@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import css from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
+import { UserBarBtn } from '../UserBarBtn/UserBarBtn';
 
 export const Header = () => {
   const { isLoggedIn } = useAuth();
@@ -18,7 +19,7 @@ export const Header = () => {
 
       </NavLink>
       <Navigation />
-      {isLoggedIn ? <UserMenu /> : null }
+      {isLoggedIn ? <UserBarBtn /> : null }
     </header>
   );
 };

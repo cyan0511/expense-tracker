@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import { fetchCurrentUser } from '../redux/user/operations';
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
@@ -22,6 +23,11 @@ export function App() {
       if (token && !isLoggedIn) {
         await dispatch(refreshToken({ sid })).unwrap();
       }
+
+      if (isLoggedIn) {
+        await dispatch(fetchCurrentUser());
+      }
+
       setIsLoading(false); // Set loading to false after checking auth status
     };
 

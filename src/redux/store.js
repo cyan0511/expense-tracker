@@ -5,6 +5,7 @@ import { authReducer } from './auth/authSlice';
 import { categoriesReducer } from './categories/categoriesSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 import { filterReducer } from './filterSlice';
+import { userReducer } from './user/userSlice';
 
 // Persisting token field from auth slice to localstorage
 const authPersistConfig = {
@@ -16,6 +17,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    user: userReducer,
     categories: categoriesReducer,
     transactions: transactionsReducer,
     filter: filterReducer,

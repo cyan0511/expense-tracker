@@ -1,8 +1,6 @@
 import React from 'react';
 import css from './TransactionsTotalAmount.module.css';
 import icons from '../../assets/images/icons.svg';
-import { useSelector } from 'react-redux';
-import { getTransactions } from '../../redux/transactions/selectors';
 
 export const TransactionsTotalAmount = ({ expenses, incomes }) => {
   const getTotalExpenses = () => expenses.reduce((a, b) => a + b.sum, 0);
@@ -10,6 +8,9 @@ export const TransactionsTotalAmount = ({ expenses, incomes }) => {
 
   return (
     <div className={css.container}>
+
+
+
       <div className={css.totalContainer}>
         <div className={css.arrow}>
           <svg width="15" height="17">

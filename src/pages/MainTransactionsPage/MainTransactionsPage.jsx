@@ -38,7 +38,7 @@ const MainTransactionsPage = () => {
 
   return (
     <div className={css.container}>
-      <div className={css.leftContainer}>
+      <div className={css.headerContainer}>
         <h2>
           Expense Log
         </h2>
@@ -46,20 +46,23 @@ const MainTransactionsPage = () => {
           Capture and organize every penny spent with ease! A clear view of
           your financial habits at your fingertips.
         </p>
-
         <div style={{ marginTop: '40px' }}>
           <TransactionsTotalAmount expenses={currentMonthExpenses} incomes={currentMonthIncomes} />
         </div>
+      </div>
+
+      <div className={css.formContainer}>
+        <TransactionProvider >
+          <TransactionForm />
+        </TransactionProvider>
+      </div>
+
+      <div className={css.chartContainer}>
         <div style={{ marginTop: '40px' }}>
           <TransactionsChart expenses={currentMonthExpenses} />
         </div>
       </div>
 
-      <div>
-        <TransactionProvider >
-          <TransactionForm />
-        </TransactionProvider>
-      </div>
     </div>
   );
 };

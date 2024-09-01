@@ -1,8 +1,34 @@
-.container {
+.container {/*
   display: flex;
   min-width: 1240px;
-  gap: 44px;
+  gap: 44px;*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns layout */
+  grid-template-rows: auto; /* Rows will adjust based on content */
+  gap: 10px; /* Space between items */
 }
+
+.headerContainer {
+  grid-column: 1; /* Place div1 in the first column */
+  grid-row: 1; /* Place div1 in the first row */
+}
+
+.formContainer {
+  grid-column: 2; /* Place div2 in the second column */
+  grid-row: 1; /* Place div2 in the first row */
+}
+
+.chartContainer {
+  grid-column: 1 / span 2; /* Span both columns, placing div3 under div1 */
+  grid-row: 2; /* Move div3 to the second row */
+
+  position: absolute; /* Position absolutely inside the container */
+  top: 330px; /* Position just below div1 */
+  left: 0; /* Align with the first column */
+}
+
+
+
 
 .leftContainer {
   max-width: 630px;
@@ -26,4 +52,31 @@
   letter-spacing: -0.32px;
   width: 630px;
   margin-top: 15px;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-rows: repeat(3, auto); /* Three rows layout */
+  }
+
+  .headerContainer {
+    grid-column: 1; /* All items in the single column */
+    grid-row: 1; /* Ensure div1 is first */
+  }
+
+  .formContainer {
+    grid-column: 1; /* All items in the single column */
+    grid-row: 2; /* Ensure div2 is second */
+  }
+
+  .chartContainer {
+    grid-column: 1; /* All items in the single column */
+    grid-row: 3; /* Ensure div3 is third */
+
+    position: unset;
+    top: unset;
+    left: unset;
+  }
 }

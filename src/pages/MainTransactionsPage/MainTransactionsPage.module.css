@@ -1,40 +1,19 @@
 .container {/*
   display: flex;
-  min-width: 1240px;
-  gap: 44px;*/
+  min-width: 1240px; */
+  gap: 44px;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns layout */
   grid-template-rows: auto; /* Rows will adjust based on content */
-  gap: 10px; /* Space between items */
 }
 
 .headerContainer {
   grid-column: 1; /* Place div1 in the first column */
   grid-row: 1; /* Place div1 in the first row */
-}
-
-.formContainer {
-  grid-column: 2; /* Place div2 in the second column */
-  grid-row: 1; /* Place div2 in the first row */
-}
-
-.chartContainer {
-  grid-column: 1 / span 2; /* Span both columns, placing div3 under div1 */
-  grid-row: 2; /* Move div3 to the second row */
-
-  position: absolute; /* Position absolutely inside the container */
-  top: 330px; /* Position just below div1 */
-  left: 0; /* Align with the first column */
-}
-
-
-
-
-.leftContainer {
   max-width: 630px;
 }
 
-.leftContainer > h2 {
+.headerContainer > h2 {
   color: #FAFAFA;
   font-size: 38px;
   font-style: normal;
@@ -43,19 +22,34 @@
   letter-spacing: -0.76px;
 }
 
-.leftContainer > p {
+.headerContainer > p {
   color: rgba(250, 250, 250, 0.40);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.32px;
-  width: 630px;
+  max-width: 630px;
   margin-top: 15px;
 }
 
+.formContainer {
+  grid-column: 2; /* Place formContainer in the second column */
+  grid-row: 1; /* Place formContainer in the first row */
+}
 
-@media (max-width: 768px) {
+.chartContainer {
+  grid-column: 1 / span 2; /* Span both columns, placing chartContainer under formContainer */
+  grid-row: 2; /* Move chartContainer to the second row */
+
+  position: absolute; /* Position absolutely inside the container */
+  top: 428px; /* Position just below formContainer */
+  /*left: 0;  Align with the first column */
+}
+
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
   .container {
     grid-template-columns: 1fr; /* Single column layout */
     grid-template-rows: repeat(3, auto); /* Three rows layout */
@@ -63,20 +57,48 @@
 
   .headerContainer {
     grid-column: 1; /* All items in the single column */
-    grid-row: 1; /* Ensure div1 is first */
+    grid-row: 1; /* Ensure formContainer is first */
+    max-width: 704px;
   }
 
   .formContainer {
     grid-column: 1; /* All items in the single column */
-    grid-row: 2; /* Ensure div2 is second */
+    grid-row: 2; /* Ensure formContainer is second */
+    max-width: 704px;
+    width: 100%;
   }
 
   .chartContainer {
     grid-column: 1; /* All items in the single column */
-    grid-row: 3; /* Ensure div3 is third */
+    grid-row: 3; /* Ensure chartContainer is third */
 
     position: unset;
     top: unset;
     left: unset;
+    max-width: 704px;
+  }
+}
+
+
+@media screen and (max-width: 376px) {
+  .headerContainer > p {
+    max-width: 335px;
+  }
+
+  .formContainer {
+    max-width: 335px;
+  }
+
+  .chartContainer {
+    grid-column: 1; /* All items in the single column */
+    grid-row: 3; /* Ensure chartContainer is third */
+
+    position: unset;
+    top: unset;
+    left: unset;
+    max-width: 335px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
   }
 }

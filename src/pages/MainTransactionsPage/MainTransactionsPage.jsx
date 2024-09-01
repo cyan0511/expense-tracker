@@ -22,8 +22,8 @@ const MainTransactionsPage = () => {
   const isCurrentMonth = (date) => {
     const itemDate = new Date(date);
     return itemDate.getMonth() === currentMonth &&
-      itemDate.getFullYear() === currentYear
-  }
+      itemDate.getFullYear() === currentYear;
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -31,7 +31,7 @@ const MainTransactionsPage = () => {
     dispatch(fetchIncomes());
   }, [dispatch]);
 
-  const currentMonthExpenses =  expenses
+  const currentMonthExpenses = expenses
     .filter(e => isCurrentMonth(e.date));
   const currentMonthIncomes = incomes
     .filter(e => isCurrentMonth(e.date));
@@ -52,15 +52,13 @@ const MainTransactionsPage = () => {
       </div>
 
       <div className={css.formContainer}>
-        <TransactionProvider >
+        <TransactionProvider>
           <TransactionForm />
         </TransactionProvider>
       </div>
 
       <div className={css.chartContainer}>
-        <div style={{ marginTop: '40px' }}>
-          <TransactionsChart expenses={currentMonthExpenses} />
-        </div>
+        <TransactionsChart expenses={currentMonthExpenses} />
       </div>
 
     </div>

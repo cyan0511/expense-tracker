@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux';
 import { getCategories } from '../../redux/categories/selectors';
 import { useTransactionForm } from '../../context/TransactionProvider';
 import { CategoriesModal } from '../CategoriesModal/CategoriesModal';
+import { getUser } from '../../redux/user/selectors';
 
 export const TransactionForm = ({ onSave }) => {
+  const user = useSelector(getUser);
   const { formData, handleChange, handleSubmit } = useTransactionForm();
 
   const datePicker = useRef(null);
@@ -96,7 +98,7 @@ export const TransactionForm = ({ onSave }) => {
             <label htmlFor="time">
               Time
             </label>
-            <div style={{ position: 'relative' }}>
+            <div className={css.timeContainer} style={{ position: 'relative' }}>
               <input
                 ref={timePicker}
                 value={formData.time || ''}
@@ -104,7 +106,7 @@ export const TransactionForm = ({ onSave }) => {
                 onClick={e => e.currentTarget.showPicker()}
                 onChange={e => handleChange('time', e.target.value)}
               />
-              <svg onClick={() => timePicker.current?.click()}>
+              <svg  onClick={() => timePicker.current?.click()}>
                 <use href={`${icon}#clock-icon`} />
               </svg>
             </div>
@@ -132,16 +134,15 @@ export const TransactionForm = ({ onSave }) => {
           >
             Sum
           </label>
-          <div style={{ position: 'relative' }}>
+          <div className={css.sumContainer}>
             <input
-              style={{ width: '454px' }}
               type="number"
               placeholder="Enter the sum"
               value={formData.sum || ''}
               onChange={(e) => handleChange('sum', e.target.value)}
             />
             <span className={css.currency}>
-              USD
+              {user.currency}
             </span>
           </div>
         </div>

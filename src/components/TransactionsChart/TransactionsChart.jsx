@@ -76,8 +76,9 @@ export const TransactionsChart = ({ expenses }) => {
   };
 
   const options = {
-    rotation: -82, // Start angle for the chart
-    circumference: 170, // Sweep angle for the chart
+    responsive: true,
+    rotation: -82,
+    circumference: 170,
     cutout: '70%', // Cut out the middle of the chart
     plugins: {
       legend: {
@@ -91,7 +92,6 @@ export const TransactionsChart = ({ expenses }) => {
       <h2>Expenses categories</h2>
       <div className={css.data}>
         <div className={css.chart}>
-
           <Doughnut data={data} options={options} />
           <div className={css.percentage}>
             100%

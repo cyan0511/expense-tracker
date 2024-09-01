@@ -91,12 +91,6 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
       onClose();
     };
 
-    const handleBackdropClick = e => {
-      if (e.target === e.currentTarget) {
-        onClose();
-      }
-    };
-
     const tempProfile = (onClick) => (
       <svg className={css.tempProfile} width={100} height={100} onClick={onClick}>
         <use
@@ -111,7 +105,7 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
       >
         <div className={css.container}>
 
-          <h2 className="text-white text-[28px] tracking-[-0.56px] leading-none">
+          <h2>
             Profile settings
           </h2>
 
@@ -169,9 +163,6 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
                   onFocus={handleSelectFocus}
                   onBlur={handleSelectBlur}
                 >
-                  <option value="php">
-                    ₱ PHP
-                  </option>
                   <option value="uah">
                     ₴ UAH
                   </option>
@@ -207,7 +198,7 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
               disabled={isLoading}
               className="primary-button"
             >
-              {isLoading ? <div>loading...</div> : 'Save'}
+              {isLoading ? <div>Saving...</div> : 'Save'}
             </button>
           </form>
         </div>

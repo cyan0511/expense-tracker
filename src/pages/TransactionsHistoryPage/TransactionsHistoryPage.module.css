@@ -1,12 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 1240px;
+  max-width: 1240px;
   gap: 44px;
+  width: 100%;
 }
 
 .headerContainer {
-
+  width: 100%;
 }
 
 .headerContainer > h2 {
@@ -25,7 +26,7 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.32px;
-  width: 516px;
+  max-width: 516px;
   margin-top: 15px;
 }
 
@@ -33,4 +34,21 @@
   display: flex;
   justify-content: space-between;
   gap: 94px;
+}
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .topContainer {
+    flex-direction: column;
+  }
+
+  .headerContainer > p {
+    max-width: 570px;
+  }
+}
+
+@media screen and (max-width: 368px) {
+  .topContainer {
+    gap: 40px;
+  }
 }

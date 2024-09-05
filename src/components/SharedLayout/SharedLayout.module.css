@@ -1,9 +1,10 @@
 .container {
-  margin: 0 auto;
-  padding: 0 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  padding: 32px;
+  width: 100%;
 }
 
 .mainContainer {
@@ -13,31 +14,30 @@
   gap: 54px;
   justify-content: center;
   width: 100%;
+  max-width: 1240px;
+}
+
+.outlet {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Styles for screens between 376px and 768px wide (e.g., tablets) */
 @media screen and (max-width: 768px) {
-  .container {
+  /*.container {
     padding: 32px;
-  }
+  }*/
   .mainContainer {
     flex-direction: column;
     margin-top: 96px;
   }
 
   .imageWrapper {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    /* overflow: hidden; */
-    transition: opacity 1.5s ease, transform 1.5s ease;
-    opacity: 0;
+    order: 2;
+  }
+
+  .hiddenImageWrapper {
     display: none;
   }
 }

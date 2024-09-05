@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  max-width: 575px;
+  max-width: 533px;
+  width: 100%;
 }
 
 .container Form {

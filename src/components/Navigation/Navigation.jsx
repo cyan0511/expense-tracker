@@ -3,13 +3,13 @@ import css from './Navigation.module.css';
 import { TransactionsHistoryNav } from '../TransactionsHistoryNav/TransactionsHistoryNav';
 
 
-export const Navigation = () => {
+export const Navigation = ({className, activeClass}) => {
   const { isLoggedIn } = useAuth();
 
   return (
     <nav className={css.navbar}>
       {isLoggedIn && (
-        <TransactionsHistoryNav />
+        <TransactionsHistoryNav className={className} activeClass={activeClass} />
       )}
     </nav>
   );

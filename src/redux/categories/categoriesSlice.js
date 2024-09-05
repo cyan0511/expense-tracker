@@ -36,6 +36,7 @@ const categoriesSlice = createSlice({
         state.isLoading = false;
         state.categories[type] = [...state.categories[type] || []];
         state.categories[type].push(action.payload);
+        Notify.success('Category added successfully!');
       })
       .addCase(addCategory.rejected, (state, action) => {
         state.isLoading = false;
@@ -46,8 +47,6 @@ const categoriesSlice = createSlice({
       })
       .addCase(updateCategory.fulfilled, (state, action) => {
         state.isLoading = false;
-
-        console.log(state.categories);
 
         state.categories = {
           expenses: state.categories.expenses?.map(e => e._id === action.payload._id ?
@@ -77,6 +76,7 @@ const categoriesSlice = createSlice({
       .addCase(deleteCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+        Notify.failure('Failed to delete category!');
       });
   },
 });

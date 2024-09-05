@@ -6,20 +6,14 @@
 
   <!-- Trash -->
   <symbol fill="none" viewBox="0 0 16 16" id="trash" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 4h12M12.667 4v9.333a1.334 1.334 0 0 1-1.334 1.334H4.667a1.334 1.334 0 0 1-1.334-1.334V4m2 0V2.667a1.333 1.333 0 0 1 1.334-1.334h2.666a1.334 1.334 0 0 1 1.334 1.334V4M6.667 7.333v4M9.333 7.333v4" stroke="#0EF387" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 4h12M12.667 4v9.333a1.334 1.334 0 0 1-1.334 1.334H4.667a1.334 1.334 0 0 1-1.334-1.334V4m2 0V2.667a1.333 1.333 0 0 1 1.334-1.334h2.666a1.334 1.334 0 0 1 1.334 1.334V4M6.667 7.333v4M9.333 7.333v4" stroke="#0EF387" style="stroke: var(--currentColor, #0EF387)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 
   <!-- Edit -->
-  <symbol fill="none" viewBox="0 0 16 16" id="edit" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#aa)">
-      <path d="M11.333 2A1.886 1.886 0 0 1 14 4.667l-9 9-3.667 1 1-3.667 9-9Z" stroke="#0EF387" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <defs>
-      <clipPath id="aa">
-        <path fill="#fff" d="M0 0h16v16H0z"/>
-      </clipPath>
-    </defs>
+  <symbol id="edit" viewBox="0 0 32 32">
+    <path fill="none" stroke="#0ef387" style="stroke: var(--currentColor, #0ef387)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M22.666 4c0.35-0.35 0.766-0.628 1.223-0.817s0.948-0.287 1.443-0.287c0.495 0 0.986 0.098 1.443 0.287s0.873 0.467 1.224 0.817 0.628 0.766 0.817 1.223c0.19 0.458 0.287 0.948 0.287 1.443s-0.098 0.986-0.287 1.443c-0.189 0.458-0.467 0.873-0.817 1.223l-18 18-7.333 2 2-7.333 18-18z" />
   </symbol>
+
 
   <!-- Arrow Up -->
   <symbol id="arrow-up">
@@ -110,5 +104,9 @@
 
   <symbol fill="none" viewBox="0 0 38 38" id="user-bold" xmlns="http://www.w3.org/2000/svg">
     <path d="M34.79 31.172a18.312 18.312 0 0 0-9.021-7.901 11.281 11.281 0 1 0-13.538 0 18.312 18.312 0 0 0-9.022 7.9 1.782 1.782 0 1 0 3.083 1.782c2.69-4.649 7.44-7.422 12.708-7.422s10.018 2.775 12.708 7.422a1.781 1.781 0 0 0 3.083-1.781ZM11.282 14.25A7.718 7.718 0 1 1 19 21.97a7.727 7.727 0 0 1-7.719-7.719Z" fill="#0EF387"/>
+  </symbol>
+
+  <symbol fill="none" viewBox="0 0 44 44" id="menu" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.5 15.583h33m-33 12.834h33" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 </svg>

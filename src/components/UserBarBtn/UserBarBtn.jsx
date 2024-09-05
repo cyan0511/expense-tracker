@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { getUser } from '../../redux/user/selectors';
 import css from './UserBarBtn.module.css';
 
-export const UserBarBtn = () => {
+export const UserBarBtn = ({className}) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const panelRef = useRef(null);
   const user = useSelector(getUser);
@@ -36,7 +36,7 @@ export const UserBarBtn = () => {
   }, []);
 
   return (
-    <div ref={panelRef}>
+    <div ref={panelRef} className={className}>
       <div className={css.container} onClick={togglePanel}>
         {user.avatarUrl ?
           (<img

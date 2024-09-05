@@ -57,6 +57,7 @@ const MainTransactionsPage = () => {
         </TransactionProvider>
       </div>
 
+
       <div className={css.chartContainer}>
         <TransactionsChart expenses={currentMonthExpenses} />
       </div>

@@ -1,14 +1,15 @@
 .container {
   display: flex;
   align-items: flex-start;
-  max-width: 486px;
-  height: 520px;
+  /*max-width: 486px;*/
+  height: 600px;
   flex-shrink: 0;
   border-radius: 30px;
   background: #171719;
   padding: 40px;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  min-width: 500px;
 }
 
 .typeContainer {
@@ -34,7 +35,7 @@
 
 .dateTimeContainer {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -48,31 +49,33 @@
 .dateContainer svg {
   position: absolute;
   top: 10px;
-  left: 85%;
+  left: 87%;
   width: 20px;
   height: 20px;
 }
 
+.timeContainer > svg {
+  left: 88%;
+}
+
 .dateTimeContainer input[type='date']{
-  max-width: 210px;
   width: 100%;
 }
 
 .dateTimeContainer input[type='time']{
-  max-width: 192px;
   width: 100%;
 }
 
 .currency{
   position: absolute;
   top: 10px;
-  left: 97%;
+  left: 91%;
   text-transform: uppercase;
 }
 
 .sumContainer {
   position: relative;
-  width: 93.5%;
+  width: 100%;
 }
 
 .sumContainer input {
@@ -87,21 +90,12 @@
     padding-right: 109px;
   }
 
-  .dateContainer svg {
-    left: 95%;
-  }
-
-  .timeContainer > svg {
-    left: 85%;
-  }
 
   .dateTimeContainer input[type='date']{
-    max-width: 210px;
     width: 100%;
   }
 
   .dateTimeContainer input[type='time']{
-    max-width: 185px;
     width: 100%;
   }
 }
@@ -110,27 +104,29 @@
   .container {
     padding-left: 20px;
     padding-right: 20px;
+    max-width: 335px;
+    min-width: 335px;
   }
 
   .dateTimeContainer input[type='date']{
-    max-width: 100px;
     width: 100%;
   }
 
   .dateTimeContainer input[type='time']{
-    max-width: 100px;
     width: 100%;
   }
 
+
   .dateContainer svg {
-    left: 80%;
+    left: 81%;
   }
 
   .timeContainer > svg {
     left: 80%;
   }
 
-  .sumContainer {
-    width: 88%;
+  .currency{
+    left: 86%;
   }
+
 }

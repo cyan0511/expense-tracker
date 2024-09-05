@@ -16,7 +16,7 @@
   width: 10px;
   flex-shrink: 0;
   border-radius: 12px;
-  background: #0C0D0D;;
+  background: #0C0D0D;
 }
 
 ::-webkit-scrollbar-track {
@@ -30,7 +30,9 @@
   border: 2px solid #444446; /* Space between scrollbar and edge */
 }
 
-
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -90,6 +92,7 @@ p {
   color: #0C0D0D;
   transition: background-color 1.0s ease;
   cursor: pointer;
+  border: none;
 }
 
 .primary-button:disabled, .primary-button:hover:disabled {
@@ -211,4 +214,9 @@ input[type="date"]:not(:placeholder-shown) {
   transition: opacity 1.5s ease, transform 1.5s ease;
   opacity: 0;
   display: none;
+}
+
+select > option {
+  background: transparent;
+  color: #0C0D0D;
 }

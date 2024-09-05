@@ -56,10 +56,12 @@ const userSlice = createSlice({
           avatarUrl: action.payload?.avatarUrl,
         };
         state.isLoading = false;
+        Notify.success('Avatar updated successfully!');
       })
       .addCase(changeAvatar.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        Notify.failure('Failed to update avatar!');
       })
 
       .addCase(removeAvatar.pending, state => {

@@ -9,12 +9,15 @@
 
 .totalContainer {
   max-width: 303px;
+  min-width: 200px;
   width: 100%;
   height: 121px;
-  position: relative;
+/*  position: relative;*/
   background: #171719;
   border-radius: 30px;
   align-content: center;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -43,6 +46,31 @@
   position: absolute;
 }
 
+.dataContainer {
+/*  left: 88px;
+  top: 32px;
+  position: absolute;*/
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 7px;
+  display: inline-flex;
+}
+
+.amount {
+  color: #FAFAFA;
+  font-size: 24px;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.description {
+  color: rgba(249.69, 249.69, 249.69, 0.50);
+  font-size: 16px;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
 /* Styles for screens between 376px and 768px wide (e.g., tablets) */
 @media screen and (max-width: 768px) {
   .totalContainer{
@@ -56,5 +84,22 @@
   }
   .totalContainer{
     max-width: 335px;
+    width: 335px;
+    height: 81px;
+    flex-shrink: 0;
+  }
+
+  .description {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .amount {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }

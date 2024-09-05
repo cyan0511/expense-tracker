@@ -23,29 +23,10 @@ export const TransactionsTotalAmount = ({ expenses, incomes }) => {
           </svg>
         </div>
 
-        <div style={{
-          left: 88,
-          top: 32,
-          position: 'absolute',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          gap: 7,
-          display: 'inline-flex',
-        }}>
-          <div style={{
-            color: 'rgba(249.69, 249.69, 249.69, 0.50)',
-            fontSize: 16,
-            fontWeight: '400',
-            wordWrap: 'break-word',
-          }}>Total Income
+        <div className={css.dataContainer}>
+          <div className={css.description}>Total Income
           </div>
-          <div style={{
-            color: '#FAFAFA',
-            fontSize: 24,
-            fontWeight: '700',
-            wordWrap: 'break-word',
-          }}>{currencySymbol[user?.currency?.toUpperCase()]}{getTotalIncomes()}</div>
+          <div className={css.amount}>{currencySymbol[user?.currency?.toUpperCase()]}{getTotalIncomes().toFixed(2)}</div>
         </div>
       </div>
       <div className={css.totalContainer}>
@@ -54,29 +35,10 @@ export const TransactionsTotalAmount = ({ expenses, incomes }) => {
             <use href={`${icons}#arrow-down`} />
           </svg>
         </div>
-        <div style={{
-          left: 88,
-          top: 32,
-          position: 'absolute',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          gap: 7,
-          display: 'inline-flex',
-        }}>
-          <div style={{
-            color: 'rgba(249.69, 249.69, 249.69, 0.50)',
-            fontSize: 16,
-            fontWeight: '400',
-            wordWrap: 'break-word',
-          }}>Total Expense
+        <div className={css.dataContainer}>
+          <div className={css.description}>Total Expense
           </div>
-          <div style={{
-            color: '#FAFAFA',
-            fontSize: 24,
-            fontWeight: '700',
-            wordWrap: 'break-word',
-          }}>{currencySymbol[user?.currency?.toUpperCase()]}{getTotalExpenses()}</div>
+          <div className={css.amount}>{currencySymbol[user?.currency?.toUpperCase()]}{getTotalExpenses().toFixed(2)}</div>
         </div>
       </div>
     </div>

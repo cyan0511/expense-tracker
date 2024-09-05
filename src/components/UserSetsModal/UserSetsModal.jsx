@@ -7,7 +7,6 @@ import {
 } from '../../redux/user/operations';
 import { getUser, getIsLoading } from '../../redux/user/selectors';
 import svg from '../../assets/images/icons.svg';
-import { Notify } from 'notiflix';
 import Modal from '../Modal/Modal';
 import css from './UserSetsModal.module.css';
 
@@ -58,21 +57,13 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
     };
 
     // Handle Avatar Upload
-    const handleUploadAvatar = () => {
+    const handleUploadAvatar = async () => {
       setIsUploading(true); // Set uploading state
       if (selectedFile) {
-        dispatch(changeAvatar(selectedFile))
-          .unwrap()
-          .then(() => {
-            Notify.success('Avatar has been updated successfully!');
-            setSelectedFile(null);
-            setIsUploading(false);
-            onClose();
-          })
-          .catch(e => {
-            Notify.error('Failed! Try to upload a smaller photo');
-            setIsUploading(false);
-          });
+        await dispatch(changeAvatar(selectedFile));
+        setSelectedFile(null);
+        setIsUploading(false);
+        onClose();
       }
     };
 

@@ -27,6 +27,7 @@ export const CategoryListItem = ({ category, onItemClick }) => {
       {isEdit &&
         <input type="text"
           onKeyDown={(e) => {
+            e.stopPropagation();
             if (e.key === 'Escape') {
               setCategoryName(category.categoryName);
               setIsEdit(false);

@@ -54,4 +54,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 500px;
+}
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .modalContent > form {
+    padding: 40px;
+  }
 }

@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 380px;
+  max-width: 399px;
+  width: 100%;
 }
 
 
@@ -16,8 +17,8 @@
 }
 
 .form input {
-  min-width: 250px;
-  max-width: 346px;
+  max-width: 399px;
+  width: 100%;
 }
 
 .actionButtons {

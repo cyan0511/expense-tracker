@@ -52,14 +52,14 @@ export const TransactionsChart = ({ expenses }) => {
   ];
 
   const getCategoryColor = index => {
-    if (index > categoryColors.length ) return generateRandomColor();
+    if (index > categoryColors.length) return generateRandomColor();
     return categoryColors[index];
-  }
+  };
 
   const generateRandomColor = () => {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return `#${randomColor.padStart(6, '0')}`;
-  }
+  };
 
   const data = {
     labels: categories.map(c => c.categoryName),
@@ -103,7 +103,12 @@ export const TransactionsChart = ({ expenses }) => {
             {categories.map((cat, index) => (
                 <li key={index}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ width: '12px', height: '12px', background: `${getCategoryColor(index)}`, borderRadius: 9999 }} />
+                    <div style={{
+                      width: '12px',
+                      height: '12px',
+                      background: `${getCategoryColor(index)}`,
+                      borderRadius: 9999,
+                    }} />
                     {cat.categoryName}
                   </div>
                   <span>{(expensePercentage[cat.categoryName] || 0).toFixed(0)}%</span></li>

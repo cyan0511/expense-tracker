@@ -1,9 +1,12 @@
 .container {
-  width: 1240px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1240px;
   height: 439px;
   flex-shrink: 0;
   border-radius: 30px;
   background: #171719;
+  min-width: 500px;
 }
 
 .header {
@@ -11,6 +14,8 @@
 }
 
 .table {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   border-collapse: collapse;
   height: 290px;
@@ -48,6 +53,10 @@
 .cell {
   flex: 1;
   padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*max-width: 100px;*/
 }
 
 
@@ -62,10 +71,77 @@
 .actionButtons {
   display: flex;
   flex-direction: row;
-
   gap: 8px;
+  position: relative;
 }
 
 .actionButtons button {
-  width: 118px;
+  max-width: 118px;
+  cursor: pointer;
+}
+
+/*.btnEdit button:hover {
+  border: none;
+}*/
+
+.btnEdit svg {
+  position: absolute;
+  --currentColor: #0C0D0D;
+  left: 30px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.btnDelete {
+  justify-content: unset;
+  position: relative;
+  border: none;
+  background: #0C0D0D;
+}
+
+.btnDelete:hover {
+  border: 1px solid #0EF387 ;
+  transition: background-color 1.0s ease;
+  box-sizing: border-box;
+}
+
+.btnDelete svg {
+  position: absolute;
+  --currentColor: #FAFAFA;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+
+/* Styles for screens between 376px and 768px wide (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .buttonText {
+    display: none;
+  }
+
+  .actionButtons button {
+    height: 44px;
+    width: 44px;
+    padding: 14px;
+  }
+
+  .actionButtons button svg {
+    left: unset;
+  }
+
+  .btnDelete {
+    border-radius: 40px;
+    background: #0C0D0D;
+    border: none;
+  }
+
+  .btnDelete svg {
+    --currentColor: #FAFAFA;
+
+  }
+
+
 }

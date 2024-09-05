@@ -1,6 +1,7 @@
 .actionButtons {
   display: flex;
   gap: 14px;
+  margin-right: 15px;
 }
 
 .actionButtons svg {

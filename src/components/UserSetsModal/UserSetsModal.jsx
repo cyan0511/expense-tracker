@@ -56,7 +56,6 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
       }
     };
 
-    // Handle Avatar Upload
     const handleUploadAvatar = async () => {
       setIsUploading(true); // Set uploading state
       if (selectedFile) {
@@ -144,7 +143,6 @@ export const UserSetsModal = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Input Fields */}
             <div className={css.nameContainer}>
               <div style={{ position: 'relative' }}>
                 <select

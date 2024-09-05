@@ -18,16 +18,18 @@ export const AuthForm = ({
   const { isRefreshing } = useAuth();
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
-  const [isValidPassword, setIsValidPassword] = useState(null);
+  const [isValid, setIsValid] = useState(null);
 
   // Handle Password Validation
   const validatePassword = (e, field) => {
-    if (field === 'password') {
-      const isValid = e.target.value.length >= 8;
-      setIsValidPassword(isValid);
-      setError(null);
+    setMessage('');
+
+    if (field === 'password' && !isLogin) {
+      const valid = e.target.value.length >= 8;
+      setIsValid(e.target.value.length === 0 ? null : valid);
+      setMessage(valid ? 'Password is secure.' : 'Password must be at least 8 characters long.');
     }
   };
 
@@ -39,16 +41,9 @@ export const AuthForm = ({
     validatePassword(e, field);
   };
 
-  // Handle Submit using Async
+  // Handle Submit
   const handleSubmit = async e => {
     e.preventDefault();
-    setError(null);
-    setIsValidPassword(null);
-
-    if (!isValidPassword) {
-      setError('Password must be at least 8 characters long.');
-      return;
-    }
 
     try {
       if (isLogin) {
@@ -57,10 +52,14 @@ export const AuthForm = ({
         await dispatch(register(formData)).unwrap();
       }
     } catch (err) {
+      setIsValid(false);
+
       if (err.status === 409) {
-        setError('Account already exists');
+        setMessage('Account already exists.');
       } else if (err.status === 403) {
-        setError('Email address does not exist or the password is incorrect');
+        setMessage('Invalid email or password.');
+      } else {
+        setMessage(`${err.message || 'An error has occurred.'}`);
       }
       clearPasswordField();
     }
@@ -83,6 +82,7 @@ export const AuthForm = ({
                 ? 'text'
                 : field.type
             }
+            className={field.type === 'password' && isValid !== null ? (isValid  ? css.valid : css.invalid) : ''}
             placeholder={field.placeholder}
             value={formData[field.name] || ''}
             onChange={e => handleChange(e, field.name)}
@@ -90,28 +90,33 @@ export const AuthForm = ({
             required
           />
           {field.type === 'password' ?
-            (<svg width="20" height="20" onClick={() => setShowPassword(val => !val)}>
-              <use href={`${iconSvg}#eye${showPassword ? '' : '-off'}`} />
-            </svg>) : null
+            (<>
+              {isLogin ?
+                <svg width="20" height="20" onClick={() => setShowPassword(val => !val)}>
+                  <use href={`${iconSvg}#eye${showPassword ? '' : '-off'}`} />
+                </svg> :
+                    isValid !==null &&
+                <svg width="20" height="20" onClick={() => {
+                  if (!isValid) {
+                    clearPasswordField();
+                    setIsValid(null);
+                    setMessage('');
+                  }
+                }}>
+                  <use href={`${iconSvg}#${isValid ? 'valid' : 'invalid'}-icon`} />
+                </svg>
+                }
+
+                <p className={css.message}
+                  style={{ color: isValid ? 'var(--mint-green)' : 'var(--red)' }}
+                >
+                  {' '}
+                  {message}
+                </p>
+            </>) : null
           }
         </div>
       ))}
-
-
-      <div>
-        {isValidPassword !== null && !isLogin && (
-          <p
-            style={{ color: isValidPassword ? 'var(--mint-green)' : 'var(--red)' }}
-          >
-            {isValidPassword
-              ? 'Password is secure'
-              : 'Enter a valid Password'}
-          </p>
-        )}
-        {error && (
-          <p style={{ color: 'var(--red)' }}>{error}</p>
-        )}
-      </div>
 
 
       <div className={css.actionButtons} style={!isLogin ? { marginTop: '71px' } : null}>

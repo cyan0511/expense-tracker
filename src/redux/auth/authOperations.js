@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async ({ name, email, password }, thunkAPI) => {
     try {
-      const res = await axios.post('/auth/register', { name, email, password });
+      await axios.post('/auth/register', { name, email, password });
       // After successful registration, add the token to the HTTP header
       // setAuthHeader(res.data.token);
       // return res.data;
@@ -29,7 +29,7 @@ export const register = createAsyncThunk(
       return loginResponse.payload; // Return the login response payload
     } catch (error) {
       const status = error.response.status;
-      const message = error.message;
+      const { message } = error.response?.data;
       return thunkAPI.rejectWithValue({ status, message });
     }
   }
@@ -51,7 +51,7 @@ export const logIn = createAsyncThunk(
       return { user, accessToken, refreshToken, sid };
     } catch (error) {
       const status = error.response.status;
-      const message = error.message;
+      const { message } = error.response?.data;
       return thunkAPI.rejectWithValue({ status, message });
     }
   }

@@ -10,6 +10,7 @@ const authSlice = createSlice({
     sid: null,
     isLoggedIn: false,
     isRefreshing: false,
+    error: null,
   },
   extraReducers: builder => {
     builder
@@ -42,7 +43,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         state.isLoggedIn = false;
-        state.error = action.error.message;
+        state.error = action.payload;
         state.isRefreshing = false;
       })
       .addCase(logOut.fulfilled, state => {
@@ -52,6 +53,13 @@ const authSlice = createSlice({
         state.error = "";
         state.refreshToken = null;
         state.sid = null;
+        state.isRefreshing = false;
+      })
+      .addCase(logOut.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(logOut.rejected, state => {
+        state.isRefreshing = false;
       })
       .addCase(refreshToken.pending, state => {
         state.isRefreshing = true;

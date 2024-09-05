@@ -20,7 +20,7 @@ export const LogOutModal = ({ isOpen, onClose }) => {
             disabled={isLoading}
             className="primary-button"
           >
-            {isLoading ? <div>Loading...</div> : 'Logout'}
+            {isLoading ? <div>Logging out...</div> : 'Logout'}
           </button>
           <button
             onClick={onClose}

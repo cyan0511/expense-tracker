@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import svg from '../../assets/images/icons.svg';
 import { UserSetsModal } from 'components/UserSetsModal/UserSetsModal';
-// import LogoutPrompt from 'components/LogoutPrompt/LogoutPrompt';
 import css from './UserPanel.module.css';
 import { LogOutModal } from '../LogOutModal/LogOutModal';
 
@@ -60,10 +59,7 @@ export const UserPanel = ({onClose}) => {
         </div>
       </div>
 
-      {/* Render the UserSetsModal when isModalOpen is true */}
       <UserSetsModal isOpen={isProfileModalOpen} onClose={closeProfileSettings} />
-      {/* Render the LogoutPrompt when isModalOpen is true */}
-      {/* {isLogoutModalOpen && <LogoutPrompt onClose={closeLogoutPrompt} />}*/}
       <LogOutModal isOpen={isLogoutModalOpen} onClose={closeLogoutPrompt}/>
     </>
   );

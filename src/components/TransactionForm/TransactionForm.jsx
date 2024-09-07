@@ -22,6 +22,7 @@ export const TransactionForm = ({ onSave }) => {
 
   useEffect(() => {
     if (category) validateForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
   return (

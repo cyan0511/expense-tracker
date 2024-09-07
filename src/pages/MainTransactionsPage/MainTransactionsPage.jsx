@@ -29,6 +29,7 @@ const MainTransactionsPage = () => {
     dispatch(fetchCategories());
     dispatch(fetchExpenses());
     dispatch(fetchIncomes());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const currentMonthExpenses = expenses

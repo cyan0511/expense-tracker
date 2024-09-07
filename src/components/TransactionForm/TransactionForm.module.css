@@ -2,7 +2,6 @@
   display: flex;
   align-items: flex-start;
   /*max-width: 486px;*/
-  height: 600px;
   flex-shrink: 0;
   border-radius: 30px;
   background: #171719;
@@ -45,6 +44,18 @@
   gap: 8px;
   width: 100%;
 }
+
+
+.error {
+  color: #E74A3B;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 18px;
+}
+
+
 
 .dateContainer svg {
   position: absolute;

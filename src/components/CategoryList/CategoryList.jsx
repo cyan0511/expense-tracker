@@ -1,17 +1,26 @@
 import css from './CategoryList.module.css';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addCategory } from '../../redux/categories/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCategory, updateCategory } from '../../redux/categories/operations';
 import { CategoryListItem } from '../CategoryListItem/CategoryListItem';
+import { getCategories } from '../../redux/categories/selectors';
+import clsx from 'clsx';
 
-
-export const CategoryList = ({ categories, type, onItemClick }) => {
+export const CategoryList = ({ type, onItemClick }) => {
   const dispatch = useDispatch();
-  const [categoryName, setCategoryName] = useState('');
+  const categories = useSelector(getCategories);
+  const [category, setCategory] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleAddCategory = (e) => {
-    dispatch(addCategory({ type, categoryName }));
-    setCategoryName('');
+    dispatch(addCategory({ type, categoryName: category.categoryName }));
+    setCategory(null);
+  };
+
+  const handleUpdateCategory = (e) => {
+    dispatch(updateCategory(category));
+    setIsEdit(false);
+    setCategory(null);
   };
 
   return (
@@ -19,20 +28,21 @@ export const CategoryList = ({ categories, type, onItemClick }) => {
       <span className={css.categories}>All Category</span>
       <div>
         <ul>
-          {categories
+          {categories[type]
             .map((c, i) => (
-              <CategoryListItem onItemClick={onItemClick} key={i} category={c} />
+              <CategoryListItem setCategory={setCategory} setIsEdit={setIsEdit} onItemClick={onItemClick} key={i} category={c} />
             ))}
         </ul>
       </div>
       <div className={css.newCategoryContainer}>
         <span>New Category</span>
         <input type="text"
-          value={categoryName} onChange={(e) => setCategoryName(e.target.value)} />
+          value={category?.categoryName || ''} onChange={(e) => setCategory(c => ({...c, categoryName: e.target.value}))} />
 
-        <button disabled={!categoryName}
-          onClick={handleAddCategory}
-          className="primary-button" type="button">Add
+        <button disabled={!category}
+          onClick={isEdit ? handleUpdateCategory : handleAddCategory}
+          className={clsx('primary-button', isEdit ? css.save : '')} type="button">
+          {isEdit ? 'Save' : 'Add'}
         </button>
 
       </div>

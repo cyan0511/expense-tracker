@@ -18,6 +18,38 @@ export const TransactionProvider = ({ children, transaction }) => {
     type: 'expenses',
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState({ category: '', password: '' });
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { category: '', password: '' };
+
+    if (!formData.date ) {
+      newErrors.date = 'Date is required.';
+      valid = false;
+    }
+
+    if (!formData.category ) {
+      newErrors.category = 'Category is required.';
+      valid = false;
+    }
+
+    if (!formData.sum || +formData.sum === 0) {
+      newErrors.sum = 'Sum is required.';
+      valid = false;
+    }
+
+    if (!formData.comment) {
+      newErrors.comment = 'Comment is required.';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    setIsFormValid(valid);
+    return valid;
+  };
+
   useEffect(() => {
     const now = new Date();
     const date = now.toISOString().split('T')[0];
@@ -31,9 +63,12 @@ export const TransactionProvider = ({ children, transaction }) => {
 
   }, []);
 
+
   const handleSubmit = event => {
     // Prevent the default form submission behavior
     event.preventDefault();
+
+    if (!validateForm()) return;
 
     if (formData._id) {
       dispatch(updateTransaction(formData));
@@ -43,37 +78,21 @@ export const TransactionProvider = ({ children, transaction }) => {
 
     setFormData(prev => ({
       type: prev.type,
+      date: prev.date,
+      time: prev.time,
     }));
   };
-
-  /*const handleInputChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'type':
-        setType(value);
-        break;
-      case 'date':
-        setDate(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
-  };*/
 
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
       [field]: value,
     });
-
   };
 
   return (
     <TransactionContext.Provider
-      value={{ formData, setFormData, handleChange, handleSubmit }}
+      value={{ validateForm, errors, isValid: isFormValid, formData, setFormData, handleChange, handleSubmit }}
     >
       {children}
     </TransactionContext.Provider>

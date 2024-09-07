@@ -29,7 +29,7 @@ const MainTransactionsPage = () => {
     dispatch(fetchCategories());
     dispatch(fetchExpenses());
     dispatch(fetchIncomes());
-  }, [dispatch]);
+  }, []);
 
   const currentMonthExpenses = expenses
     .filter(e => isCurrentMonth(e.date));

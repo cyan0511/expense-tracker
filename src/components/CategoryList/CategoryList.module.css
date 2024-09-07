@@ -60,3 +60,7 @@
   border-radius: 12px;
   height: 38px;
 }
+
+.newCategoryContainer button.save {
+  left: 71%;
+}

@@ -64,3 +64,10 @@
 .newCategoryContainer button.save {
   left: 71%;
 }
+
+@media screen and (max-width: 376px) {
+  .newCategoryContainer button {
+    left: 56%;
+  }
+
+}

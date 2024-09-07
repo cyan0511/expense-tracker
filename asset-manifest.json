@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/expense-tracker/static/css/main.60df9b0c.css",
+    "main.css": "/expense-tracker/static/css/main.f7fc7fac.css",
     "main.js": "/expense-tracker/static/js/main.54ada93f.js",
     "static/css/616.cb612858.chunk.css": "/expense-tracker/static/css/616.cb612858.chunk.css",
     "static/js/616.6d448dd2.chunk.js": "/expense-tracker/static/js/616.6d448dd2.chunk.js",
@@ -14,14 +14,14 @@
     "static/js/437.9ab23481.chunk.js": "/expense-tracker/static/js/437.9ab23481.chunk.js",
     "static/js/50.37983421.chunk.js": "/expense-tracker/static/js/50.37983421.chunk.js",
     "static/js/481.44f3e934.chunk.js": "/expense-tracker/static/js/481.44f3e934.chunk.js",
-    "static/media/happy-couple.jpg": "/expense-tracker/static/media/happy-couple.1e19e9e3140780e82c5e.jpg",
+    "static/media/happy-couple.webp": "/expense-tracker/static/media/happy-couple.f808ebd26b3b69b7e6da.webp",
     "static/media/Fleur-Cook.png": "/expense-tracker/static/media/Fleur-Cook.608f5bc3c2d7ffaff15e.png",
     "static/media/Amanda-Lowery.png": "/expense-tracker/static/media/Amanda-Lowery.d0e555a53ec42f6e74ec.png",
     "static/media/Ethan-Valdez.png": "/expense-tracker/static/media/Ethan-Valdez.dcd29652ebf1039bec60.png",
     "static/media/icons.svg": "/expense-tracker/static/media/icons.0737e8fc40c9cfb62b996a374c9703ee.svg",
     "static/media/logo-icon.svg": "/expense-tracker/static/media/logo-icon.1e6e806712eb080c338dfcb7519d8ebb.svg",
     "index.html": "/expense-tracker/index.html",
-    "main.60df9b0c.css.map": "/expense-tracker/static/css/main.60df9b0c.css.map",
+    "main.f7fc7fac.css.map": "/expense-tracker/static/css/main.f7fc7fac.css.map",
     "main.54ada93f.js.map": "/expense-tracker/static/js/main.54ada93f.js.map",
     "616.cb612858.chunk.css.map": "/expense-tracker/static/css/616.cb612858.chunk.css.map",
     "616.6d448dd2.chunk.js.map": "/expense-tracker/static/js/616.6d448dd2.chunk.js.map",
@@ -37,7 +37,7 @@
     "481.44f3e934.chunk.js.map": "/expense-tracker/static/js/481.44f3e934.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.60df9b0c.css",
+    "static/css/main.f7fc7fac.css",
     "static/js/main.54ada93f.js"
   ]
 }
